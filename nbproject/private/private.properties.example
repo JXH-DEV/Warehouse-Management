@@ -1,0 +1,4 @@
+# Kopjoni si private.properties n\u00ebse duhet t\u00eb ndryshoni JDK lokale.
+# NetBeans -> Project Properties -> Libraries -> Java Platform
+
+# compile.on.save=true

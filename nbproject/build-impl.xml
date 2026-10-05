@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*** NetBeans implementation targets for WarehouseSystem ***
+-->
+<project name="WarehouseSystem-impl" basedir="..">
+
+    <target name="-load-properties">
+        <property file="nbproject/project.properties"/>
+        <available file="nbproject/private/private.properties" property="private.properties.present"/>
+        <antcall target="-load-private-properties"/>
+        <property name="run.working.dir" value="${basedir}"/>
+    </target>
+
+    <target name="-load-private-properties" if="private.properties.present">
+        <property file="nbproject/private/private.properties"/>
+    </target>
+
+    <target name="-init" depends="-load-properties">
+        <mkdir dir="${build.dir}/classes"/>
+        <mkdir dir="${build.dir}/empty"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="-pre-compile" depends="-init"/>
+
+    <target name="compile" depends="-pre-compile" description="Compile project.">
+        <javac srcdir="${src.dir}"
+               destdir="${build.classes.dir}"
+               debug="true"
+               includeantruntime="false"
+               source="${javac.source}"
+               target="${javac.target}"
+               encoding="${source.encoding}">
+            <classpath path="${javac.classpath}"/>
+            <compilerarg line="${javac.compilerargs}"/>
+        </javac>
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java"/>
+        </copy>
+    </target>
+
+    <target name="compile-single" depends="-init">
+        <fail unless="javac.includes">Select a Java file in NetBeans to compile singly.</fail>
+        <javac srcdir="${src.dir}"
+               destdir="${build.classes.dir}"
+               debug="true"
+               includeantruntime="false"
+               source="${javac.source}"
+               target="${javac.target}"
+               encoding="${source.encoding}">
+            <classpath path="${javac.classpath}"/>
+            <include name="${javac.includes}"/>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile" description="Run project.">
+        <java classname="${main.class}" dir="${run.working.dir}" fork="true">
+            <classpath path="${run.classpath}"/>
+            <jvmarg line="${run.jvmargs}"/>
+        </java>
+    </target>
+
+    <target name="debug" depends="compile" description="Debug project in NetBeans.">
+        <java classname="${main.class}" dir="${run.working.dir}" fork="true">
+            <classpath path="${run.classpath}"/>
+            <jvmarg value="-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}"/>
+            <jvmarg line="${run.jvmargs}"/>
+        </java>
+    </target>
+
+    <target name="jar" depends="compile" description="Build JAR.">
+        <jar destfile="${dist.jar}" basedir="${build.classes.dir}" manifest="${manifest.file}"/>
+    </target>
+
+    <target name="clean" depends="-load-properties" description="Clean build products.">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="build" depends="jar" description="Build JAR."/>
+
+    <target name="default" depends="run" description="Build and run project."/>
+
+</project>

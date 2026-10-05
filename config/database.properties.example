@@ -1,0 +1,13 @@
+# Session Pooler (IPv4) — rekomandohet për Windows
+# Merrni host/port nga Supabase Dashboard → Connect → Session pooler
+db.url=jdbc:postgresql://aws-0-REGION.pooler.supabase.com:5432/postgres?sslmode=require
+db.user=postgres.<project-ref>
+db.password=<your-database-password>
+
+# Shembull për projektin tuaj (zëvendësoni REGION dhe project-ref):
+# db.url=jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:5432/postgres?sslmode=require
+# db.user=postgres.tjtiafopahwvmizyqrvi
+
+# Lidhje direkte (vetëm nëse rrjeti juaj mbështet IPv6):
+# db.url=jdbc:postgresql://db.<project-ref>.supabase.co:5432/postgres?sslmode=require
+# db.user=postgres
